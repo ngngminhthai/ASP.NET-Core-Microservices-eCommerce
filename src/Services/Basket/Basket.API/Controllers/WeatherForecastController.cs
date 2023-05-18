@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Ocelot.Controllers
+namespace Basket.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

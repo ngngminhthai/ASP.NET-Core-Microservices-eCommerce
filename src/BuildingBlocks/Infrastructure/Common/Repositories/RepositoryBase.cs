@@ -116,6 +116,15 @@ namespace Infrastructure.Common.Repositories
         {
             await _context.SaveChangesAsync();
         }
-        
+
+        public IQueryable<T> ExecuteSqlQuery(string query)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task InsertIfNotExistAsync(Expression<Func<T, Guid>> identifierExpression, List<T> entities)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

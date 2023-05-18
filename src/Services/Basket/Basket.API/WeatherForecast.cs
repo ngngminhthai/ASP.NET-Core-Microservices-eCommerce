@@ -1,4 +1,4 @@
-namespace Ocelot
+namespace Basket.API
 {
     public class WeatherForecast
     {
