@@ -1,3 +1,4 @@
+using Basket.API.Grpc;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
@@ -12,10 +13,12 @@ namespace Basket.API.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly GeeterGrpcService _geeterGrpcService;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, GeeterGrpcService geeterGrpcService)
         {
             _logger = logger;
+            _geeterGrpcService = geeterGrpcService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -29,5 +32,14 @@ namespace Basket.API.Controllers
             })
             .ToArray();
         }
+
+        [HttpGet("Greeting")]
+        public async Task<IActionResult> GetGreeting()
+        {
+            string name = "John Doe";
+            string greeting = await _geeterGrpcService.GetGreetingAsync(name);
+            return Ok(greeting);
+        }
+
     }
 }
