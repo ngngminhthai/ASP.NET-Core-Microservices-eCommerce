@@ -1,14 +1,8 @@
-﻿
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Contracts.Domains;
 using Contracts.Domains.Interfaces;
-using Contracts.Domains;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using System.Linq.Expressions;
 
 namespace Infrastructure.Common.Repositories
 {
@@ -46,8 +40,8 @@ namespace Infrastructure.Common.Repositories
         }
         public async Task UpdateArrange(IEnumerable<T> entities)
         {
-           _context.Set<T>().UpdateRange(entities);
-           await Save();
+            _context.Set<T>().UpdateRange(entities);
+            await Save();
         }
 
         public async Task InsertIfNotExistAsync(Expression<Func<T, K>> identifierExpression, List<T> entities)
@@ -110,7 +104,7 @@ namespace Infrastructure.Common.Repositories
             return await query.SingleOrDefaultAsync(predicate);
         }
 
-       
+
 
         public async Task Save()
         {

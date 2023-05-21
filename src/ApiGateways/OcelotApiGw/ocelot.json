@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "UpstreamPathTemplate": "/gateway/test",
+      "UpstreamPathTemplate": "/ocelot/WeatherForecast",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/WeatherForecast",
       "DownstreamScheme": "http",
@@ -10,10 +10,24 @@
           "Host": "localhost",
           "Port": 5002
         }
+      ],
+      "SwaggerKey": "wheather-service"
+    }
+
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "wheather-service",
+      "Config": [
+        {
+          "Name": "WeatherForecast API",
+          "Version": "v1",
+          "Url": "http://localhost:5002/swagger/v1/swagger.json"
+        }
       ]
-    },
+    }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5021"
+    "BaseUrl": "http://localhost:5020"
   }
 }
