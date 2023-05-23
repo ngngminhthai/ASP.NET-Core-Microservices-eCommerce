@@ -13,7 +13,7 @@ builder.Services.AddScoped<GeeterGrpcService>();
 
 builder.Services.AddGrpcClient<Greeter.GreeterClient>(options =>
 {
-    options.Address = new Uri("http://localhost:5035"); // Replace with the actual gRPC server URL
+    options.Address = new Uri("http://localhost:5174"); // Replace with the actual gRPC server URL
 });
 
 
