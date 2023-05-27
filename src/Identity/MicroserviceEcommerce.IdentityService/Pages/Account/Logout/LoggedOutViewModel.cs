@@ -3,7 +3,7 @@
 // See LICENSE in the project root for license information.
 
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Logout;
+namespace IdentityServerHost.Pages.Logout;
 
 public class LoggedOutViewModel
 {

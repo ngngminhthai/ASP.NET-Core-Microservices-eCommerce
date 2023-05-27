@@ -2,7 +2,7 @@
 // See LICENSE in the project root for license information.
 
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Consent;
+namespace IdentityServerHost.Pages.Consent;
 
 public class ConsentOptions
 {

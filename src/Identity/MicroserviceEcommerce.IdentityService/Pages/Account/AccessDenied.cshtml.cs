@@ -1,6 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Account;
+namespace IdentityServerHost.Pages.Account;
 
 public class AccessDeniedModel : PageModel
 {

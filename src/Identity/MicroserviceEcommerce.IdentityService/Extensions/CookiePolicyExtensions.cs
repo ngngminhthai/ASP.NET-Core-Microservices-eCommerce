@@ -1,4 +1,4 @@
-namespace MicroserviceEcommerce.IdentityService.Extensions;
+﻿namespace MicroserviceEcommerce.IdentityService.Extensions;
 
 public static class CookiePolicyExtensions
 {

@@ -1,5 +1,5 @@
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Logout;
+namespace IdentityServerHost.Pages.Logout;
 
 public class LogoutOptions
 {

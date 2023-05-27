@@ -4,7 +4,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Login;
+namespace IdentityServerHost.Pages.Login;
 
 public class InputModel
 {

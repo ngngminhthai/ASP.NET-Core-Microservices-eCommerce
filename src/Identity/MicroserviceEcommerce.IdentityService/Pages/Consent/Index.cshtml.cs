@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Duende.IdentityServer.Events;
 using Duende.IdentityServer.Extensions;
 using Duende.IdentityServer.Models;
@@ -7,8 +11,9 @@ using IdentityModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Consent;
+namespace IdentityServerHost.Pages.Consent;
 
 [Authorize]
 [SecurityHeadersAttribute]
@@ -38,7 +43,7 @@ public class Index : PageModel
         View = await BuildViewModelAsync(returnUrl);
         if (View == null)
         {
-            return RedirectToPage("/Home/Error/Index");
+            return RedirectToPage("/Error/Index");
         }
 
         Input = new InputModel
@@ -53,7 +58,7 @@ public class Index : PageModel
     {
         // validate return url is still valid
         var request = await _interaction.GetAuthorizationContextAsync(Input.ReturnUrl);
-        if (request == null) return RedirectToPage("/Home/Error/Index");
+        if (request == null) return RedirectToPage("/Error/Index");
 
         ConsentResponse grantedConsent = null;
 

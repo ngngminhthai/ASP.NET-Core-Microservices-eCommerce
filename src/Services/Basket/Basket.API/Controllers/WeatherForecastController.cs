@@ -1,4 +1,3 @@
-using Basket.API.Grpc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +5,7 @@ namespace Basket.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -14,16 +14,21 @@ namespace Basket.API.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly GeeterGrpcService _geeterGrpcService;
+        /*        private readonly GeeterGrpcService _geeterGrpcService;
+        */
+        /*  public WeatherForecastController(ILogger<WeatherForecastController> logger, GeeterGrpcService geeterGrpcService)
+          {
+              _logger = logger;
+              _geeterGrpcService = geeterGrpcService;
+          }*/
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger, GeeterGrpcService geeterGrpcService)
+        //if use dont run grpc service, then use this constructor
+        public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-            _geeterGrpcService = geeterGrpcService;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -35,13 +40,13 @@ namespace Basket.API.Controllers
             .ToArray();
         }
 
-        [HttpGet("Greeting")]
-        public async Task<IActionResult> GetGreeting()
-        {
-            string name = "John Doe";
-            string greeting = await _geeterGrpcService.GetGreetingAsync(name);
-            return Ok(greeting);
-        }
+        /*   [HttpGet("Greeting")]
+           public async Task<IActionResult> GetGreeting()
+           {
+               string name = "John Doe";
+               string greeting = await _geeterGrpcService.GetGreetingAsync(name);
+               return Ok(greeting);
+           }*/
 
     }
 }

@@ -40,7 +40,7 @@ public class HomeController : Controller
         var token = await HttpContext.GetTokenAsync("access_token");
         client.SetBearerToken(token);
 
-        var result = await client.GetAsync("https://localhost:7019/WeatherForecast");
+        var result = await client.GetAsync("https://localhost:5445/weatherforecast");
 
         if (result.IsSuccessStatusCode)
         {

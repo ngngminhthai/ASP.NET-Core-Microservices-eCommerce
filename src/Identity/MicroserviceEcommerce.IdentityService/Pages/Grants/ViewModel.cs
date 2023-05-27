@@ -1,4 +1,7 @@
-namespace MicroserviceEcommerce.IdentityService.Pages.Grants;
+using System;
+using System.Collections.Generic;
+
+namespace IdentityServerHost.Pages.Grants;
 
 public class ViewModel
 {

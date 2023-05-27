@@ -4,10 +4,11 @@
 
 using IdentityModel;
 using Microsoft.AspNetCore.Authentication;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Diagnostics;
+namespace IdentityServerHost.Pages.Diagnostics;
 
 public class ViewModel
 {

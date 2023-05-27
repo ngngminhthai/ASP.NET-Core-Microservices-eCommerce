@@ -1,7 +1,10 @@
 // Copyright (c) Duende Software. All rights reserved.
 // See LICENSE in the project root for license information.
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Ciba;
+
+using System.Collections.Generic;
+
+namespace IdentityServerHost.Pages.Ciba;
 
 public class InputModel
 {

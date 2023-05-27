@@ -1,13 +1,15 @@
 // Copyright (c) Duende Software. All rights reserved.
 // See LICENSE in the project root for license information.
 
+using System.Threading.Tasks;
 using Duende.IdentityServer.Models;
 using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
-namespace MicroserviceEcommerce.IdentityService.Pages.Ciba;
+namespace IdentityServerHost.Pages.Ciba;
 
 [AllowAnonymous]
 [SecurityHeaders]
@@ -30,7 +32,7 @@ public class IndexModel : PageModel
         if (LoginRequest == null)
         {
             _logger.LogWarning("Invalid backchannel login id {id}", id);
-            return RedirectToPage("/Home/Error/Index");
+            return RedirectToPage("/home/error/index");
         }
 
         return Page();
