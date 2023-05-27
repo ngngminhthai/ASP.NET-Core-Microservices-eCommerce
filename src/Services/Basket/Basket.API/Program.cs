@@ -1,5 +1,6 @@
 using Basket.API.Grpc;
 using Inventory.Grpc;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<GeeterGrpcService>();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://localhost:5001";
+        options.Audience = "weatherapi";
+        options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+    });
 
 builder.Services.AddGrpcClient<Greeter.GreeterClient>(options =>
 {
@@ -28,6 +37,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

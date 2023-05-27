@@ -1,4 +1,5 @@
 using Basket.API.Grpc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
@@ -22,6 +23,7 @@ namespace Basket.API.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
+        [Authorize]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
