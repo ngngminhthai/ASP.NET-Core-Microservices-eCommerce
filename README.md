@@ -6,13 +6,13 @@
 - Correct separation of bounded contexts.
 - Communications between bounded contexts through asynchronous **RabbitMQ** and **gRPC**
 - Example of simple **CQRS** implementation and **Event Driven Architecture**.
-- Managing distributed transactions with **Sage Pattern*
+- Managing distributed transactions with **Sage Pattern**
 - **Event Sourcing** for Auditability and Temporal queries
 - Using **Best Practice** and **Design Patterns**.
 
 ## 2. Technologies and Libraries
 - ✔️ **[`.NET Core 6`](https://dotnet.microsoft.com/download)** - .NET aspnet-api-versioning)** - Set of libraries which add service API versioning to ASP.NET Web API, OData with ASP.NET Web API, and ASP.NET Core
-- ✔️ **[`EF Core`](https://github.com/dotnet/efcore)** - Modern object-database mapper for .NET. It supports LINQ queries, change tracking, updates, and schema migrations
+- ✔️ **[`EF Core`](https://github.com/dotnet/efcore)** - Modern object-database mapper for .NET. It supports LINQ queries, change tracking, updates, and schema migrations and Code First approach
 - ✔️ **[`CAP`](https://github.com/dotnetcore/CAP)** - An EventBus with local persistent message functionality for system integration in SOA or Microservice architecture
 - ✔️ **[`MassTransit`](https://masstransit.io/)** 
 - ✔️ **[`RabbitMQ`](https://masstransit.io/)** 
