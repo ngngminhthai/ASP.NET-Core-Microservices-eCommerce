@@ -35,4 +35,4 @@ Our clean architecture in each service consists of 4 main parts:
 infrastructural code responsible for module initialization, background processing, data access, communication with Events Bus and other external components or systems
 
 ## 4. Solution Architect
-<img width="599" alt="image" src="https://github.com/ngngminhthai/Microservices-eCommerce/assets/80164976/49b481b9-0b5f-424c-945e-fbb6a9193859">
+<img width="601" alt="image" src="https://github.com/ngngminhthai/Microservices-eCommerce/assets/80164976/337c599f-5138-4c17-b92d-98f6a4ed1a2a">
