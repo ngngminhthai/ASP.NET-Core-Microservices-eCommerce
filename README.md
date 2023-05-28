@@ -12,7 +12,7 @@
 - ✔️ **[`.NET Core 6`](https://dotnet.microsoft.com/download)** - .NET aspnet-api-versioning)** - Set of libraries which add service API versioning to ASP.NET Web API, OData with ASP.NET Web API, and ASP.NET Core
 - ✔️ **[`EF Core`](https://github.com/dotnet/efcore)** - Modern object-database mapper for .NET. It supports LINQ queries, change tracking, updates, and schema migrations
 - ✔️ **[`CAP`](https://github.com/dotnetcore/CAP)** - An EventBus with local persistent message functionality for system integration in SOA or Microservice architecture
-- ✔️ **[`MassTransit`]((https://masstransit.io/)** 
+- ✔️ **[`MassTransit`](https://masstransit.io/)** 
 - ✔️ **[`RabbitMQ`](https://masstransit.io/)** 
 - ✔️ **[`Azure Devops`]** Using Azure App Service to deploy services into cloud environment
 - ✔️ **[`FluentValidation`](https://github.com/FluentValidation/FluentValidation)** - Popular .NET validation library for building strongly-typed validation rules
