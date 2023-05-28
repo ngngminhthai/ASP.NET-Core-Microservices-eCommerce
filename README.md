@@ -20,6 +20,8 @@
 - ✔️ **[`Serilog`](https://github.com/serilog/serilog)** - Simple .NET logging with fully-structured events
 - ✔️ **[`Polly`](https://github.com/App-vNext/Polly)** - Polly is a .NET resilience and transient-fault-handling library that allows developers to express policies such as Retry, Circuit Breaker, Timeout, Bulkhead Isolation, and Fallback in a fluent and thread-safe manner
 - ✔️ **[`Ocelot`](https://github.com/ThreeMammals/Ocelot)** - API Gateway created using .NET Core
+- ✔️ **[`Identity Server 6`](https://duendesoftware.com/products/identityserver)** - Implement identity server for identity service to authorize, authenticate and SSO
+
 
 ## 3. Structure of services
 Our clean architecture in each service consists of 4 main parts:
