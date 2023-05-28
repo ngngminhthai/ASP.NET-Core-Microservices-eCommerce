@@ -6,6 +6,8 @@
 - Correct separation of bounded contexts.
 - Communications between bounded contexts through asynchronous **RabbitMQ** and **gRPC**
 - Example of simple **CQRS** implementation and **Event Driven Architecture**.
+- Managing distributed transactions with **Sage Pattern*
+- **Event Sourcing** for Auditability and Temporal queries
 - Using **Best Practice** and **Design Patterns**.
 
 ## 2. Technologies and Libraries
@@ -14,7 +16,7 @@
 - ✔️ **[`CAP`](https://github.com/dotnetcore/CAP)** - An EventBus with local persistent message functionality for system integration in SOA or Microservice architecture
 - ✔️ **[`MassTransit`](https://masstransit.io/)** 
 - ✔️ **[`RabbitMQ`](https://masstransit.io/)** 
-- ✔️ **[`Azure Devops`]** Using Azure App Service to deploy services into cloud environment
+- ✔️ **`Azure Devops`** Using Azure App Service to deploy services into cloud environment
 - ✔️ **[`FluentValidation`](https://github.com/FluentValidation/FluentValidation)** - Popular .NET validation library for building strongly-typed validation rules
 - ✔️ **[`Swagger & Swagger UI`](https://github.com/domaindrivendev/Swashbuckle.AspNetCore)** - Swagger tools for documenting API's built on ASP.NET Core
 - ✔️ **[`Serilog`](https://github.com/serilog/serilog)** - Simple .NET logging with fully-structured events
