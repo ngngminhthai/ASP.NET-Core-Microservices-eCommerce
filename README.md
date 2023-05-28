@@ -2,11 +2,11 @@
 > Implementing an eCommerce application with Domain-Driven Design and CQRS in .Net Core.
 
 ## 1. The Purposes of This Project
-- the **Microservices** with **DDD** implementation.
-- correct separation of bounded contexts.
-- communications between bounded contexts through asynchronous **RabbitMQ** and **gRPC**
-- example of simple **CQRS** implementation and **Event Driven Architecture**.
-- using **Best Practice** and **Design Patterns**.
+- The **Microservices** with **DDD** implementation.
+- Correct separation of bounded contexts.
+- Communications between bounded contexts through asynchronous **RabbitMQ** and **gRPC**
+- Example of simple **CQRS** implementation and **Event Driven Architecture**.
+- Using **Best Practice** and **Design Patterns**.
 
 ## 2. Technologies and Libraries
 - ✔️ **[`.NET Core 6`](https://dotnet.microsoft.com/download)** - .NET aspnet-api-versioning)** - Set of libraries which add service API versioning to ASP.NET Web API, OData with ASP.NET Web API, and ASP.NET Core
