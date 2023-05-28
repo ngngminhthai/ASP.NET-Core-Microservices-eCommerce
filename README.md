@@ -33,3 +33,6 @@ Our clean architecture in each service consists of 4 main parts:
 - **Domain** - Domain Model in Domain-Driven Design terms implements the applicable Bounded Context
 - **Infrastructure** - This is where the implementation of secondary adapters should be. Secondary adapters are responsible for communication with the external dependencies.
 infrastructural code responsible for module initialization, background processing, data access, communication with Events Bus and other external components or systems
+
+## 4. Solution Architect
+<img width="599" alt="image" src="https://github.com/ngngminhthai/Microservices-eCommerce/assets/80164976/49b481b9-0b5f-424c-945e-fbb6a9193859">
