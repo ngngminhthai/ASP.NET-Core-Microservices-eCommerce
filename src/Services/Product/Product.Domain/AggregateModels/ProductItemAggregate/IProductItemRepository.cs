@@ -1,6 +1,7 @@
 ﻿namespace Product.Domain.AggregateModels.ProductAggregate
 {
-    public class IProductRepository
+    public interface IProductItemRepository
     {
+
     }
 }
