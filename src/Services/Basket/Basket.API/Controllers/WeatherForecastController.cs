@@ -5,7 +5,6 @@ namespace Basket.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    [Authorize]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -28,6 +27,7 @@ namespace Basket.API.Controllers
             _logger = logger;
         }
 
+        [Authorize(Policy = "weatherapi.read")]
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {

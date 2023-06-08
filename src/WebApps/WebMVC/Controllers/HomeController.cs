@@ -34,6 +34,7 @@ public class HomeController : Controller
     [Authorize]
     public async Task<IActionResult> Weather()
     {
+        var claims = User.Claims;
         using var client = new HttpClient();
 
         // var token = await _tokenService.GetToken("weatherapi.read");
@@ -51,7 +52,7 @@ public class HomeController : Controller
             return View(data);
         }
 
-        throw new Exception("Unable to get content");
+        throw new Exception();
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
