@@ -15,18 +15,19 @@ public static class Config
         {
             new ApiScope("weatherapi.read"),
             new ApiScope("weatherapi.write"),
+            new ApiScope("testapis", "Test API Scope")
         };
 
     public static IEnumerable<ApiResource> ApiResources => new[]
     {
         new ApiResource("weatherapi")
         {
-            Scopes = new List<string> {"weatherapi.read", "weatherapi.write"},
+            Scopes = new List<string> {"weatherapi.read", "weatherapi.write", "testapis"},
             ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
             UserClaims = new List<string> {"role"}
         }
     };
-    
+
     public static IEnumerable<Client> Clients =>
         new Client[]
         {
@@ -47,7 +48,7 @@ public static class Config
             {
                 ClientId = "interactive",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-                    
+
                 AllowedGrantTypes = GrantTypes.Code,
 
                 RedirectUris = { "https://localhost:5444/signin-oidc" },
@@ -58,5 +59,15 @@ public static class Config
                 AllowedScopes = { "openid", "profile", "weatherapi.read" },
                 RequireConsent = true
             },
+            new Client {
+                ClientId = "testclient",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = {
+                        new Secret("testsecret".Sha256())
+                    },
+                    AllowedScopes = {
+                        "testapis"
+                    }
+            }
         };
 }
