@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Product.Domain.AggregateModels.ProductAggregate;
 
 namespace Product.Infrastructure.Persistence
 {
@@ -7,7 +8,7 @@ namespace Product.Infrastructure.Persistence
         public ProductDbContext(DbContextOptions options) : base(options)
         {
         }
-        public DbSet<Domain.AggregateModels.ProductAggregate.Product> Products { get; set; }
+        public DbSet<ProductItem> Products { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
