@@ -1,7 +1,10 @@
-﻿namespace Product.Domain.AggregateModels.ProductAggregate
+﻿using Contracts.Domains.Interfaces;
+
+namespace Product.Domain.AggregateModels.ProductAggregate
 {
-    public interface IProductItemRepository
+    public interface IProductItemRepository : IRepositoryBase<ProductItem, long>
     {
+        Task<ProductItem> UpdateOrderAsync(ProductItem productItem);
 
     }
 }

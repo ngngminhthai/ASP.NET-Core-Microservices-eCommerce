@@ -1,6 +1,12 @@
+using Contracts.Common.Interfaces;
+using Contracts.Messages;
+using Infrastructure.Common;
+using Infrastructure.Messages;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Features.ProductItems.Commands.UpdateProductItem;
+using Product.Domain.AggregateModels.ProductAggregate;
 using Product.Infrastructure.Persistence;
+using Product.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +16,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateProductItemComandHandler).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(UpdateProductItemCommandHandler).Assembly));
+builder.Services.AddScoped<IMessageProducer, RabbitMQProducer>();
+builder.Services.AddScoped<ISerializeService, SerializeService>();
+
+
 
 builder.Services.AddDbContext<ProductDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IProductItemRepository, ProductItemRepository>();
 
 var app = builder.Build();
 

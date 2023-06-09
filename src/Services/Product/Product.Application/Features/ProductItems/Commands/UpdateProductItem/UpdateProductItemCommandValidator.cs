@@ -1,6 +1,14 @@
-﻿namespace Product.Application.Features.ProductItems.Commands.UpdateProductItem
+﻿using FluentValidation;
+
+namespace Product.Application.Features.ProductItems.Commands.UpdateProductItem
 {
-    internal class UpdateProductItemCommandValidator
+    public class UpdateProductItemCommandValidator : AbstractValidator<UpdateProductItemCommand>
     {
+        public UpdateProductItemCommandValidator()
+        {
+            RuleFor(x => x.ProductItem).NotNull();
+            RuleFor(x => x.ProductItem.Id).GreaterThan(0);
+            // Add more validation rules as needed
+        }
     }
 }
