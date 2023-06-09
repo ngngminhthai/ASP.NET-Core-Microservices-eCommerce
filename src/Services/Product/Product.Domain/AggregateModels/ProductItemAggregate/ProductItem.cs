@@ -14,5 +14,7 @@ namespace Product.Domain.AggregateModels.ProductAggregate
             AddDomainEvent(new ProductItemUpdatedEvent { Name = this.Name, Price = this.Price });
             return this;
         }
+
+
     }
 }

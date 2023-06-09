@@ -4,9 +4,8 @@ using System.Linq.Expressions;
 
 namespace Contracts.Domains.Interfaces
 {
-    public interface IRepositoryBase<T, K, TContext>
+    public interface IRepositoryBase<T, K>
         where T : EntityBase<K>
-        where TContext : DbContext
     {
         IQueryable<T> GetAll(bool isAsNoTracking = false, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
         IQueryable<T> ExecuteSqlQuery(string query);
@@ -18,8 +17,13 @@ namespace Contracts.Domains.Interfaces
         Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate, Func<IQueryable<T>, IIncludableQueryable<T, object>> include = null);
         Task UpdateAsync(T entity);
         Task UpdateArrange(IEnumerable<T> entities);
-       
+
 
         Task Save();
+    }
+    public interface IRepositoryBase<T, K, TContext> : IRepositoryBase<T, K>
+    where T : EntityBase<K>
+    where TContext : DbContext
+    {
     }
 }

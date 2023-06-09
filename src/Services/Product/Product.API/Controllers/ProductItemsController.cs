@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Product.Application.Features.ProductItems.Commands.UpdateProductItem;
 using Product.Domain.AggregateModels.ProductAggregate;
 using Product.Infrastructure.Persistence;
 
@@ -60,17 +61,20 @@ namespace Product.API.Controllers
                 return BadRequest();
             }
 
-            productItem.UpdatedProductItem();
-            foreach (var domainEvent in productItem.DomainEvents())
+            var result = await _mediator.Send(new UpdateProductItemCommand(productItem));
+
+            //Create of do something else logic
+
+            if (result.IsSucceeded)
             {
-                await _mediator.Publish(domainEvent);
+                return NoContent();
             }
-
-            // Assuming you have a command to update ProductItem
-            // await _mediator.Send(new UpdateProductCommand(product));
-
-            return NoContent();
+            else
+            {
+                return BadRequest(result.Message);
+            }
         }
+
 
         // POST: api/ProductItems
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
