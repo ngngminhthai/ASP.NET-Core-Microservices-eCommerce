@@ -15,7 +15,9 @@ public static class Config
         {
             new ApiScope("weatherapi.read"),
             new ApiScope("weatherapi.write"),
-            new ApiScope("testapis", "Test API Scope")
+            new ApiScope("testapis", "Test API Scope"),
+            new ApiScope("productapi.read"),
+            new ApiScope("productapi.write")
         };
 
     public static IEnumerable<ApiResource> ApiResources => new[]
@@ -23,6 +25,12 @@ public static class Config
         new ApiResource("weatherapi")
         {
             Scopes = new List<string> {"weatherapi.read", "weatherapi.write", "testapis"},
+            ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
+            UserClaims = new List<string> {"role"}
+        },
+        new ApiResource("productapi")
+        {
+            Scopes = new List<string> { "productapi.read", "productapi.write", "testapis"},
             ApiSecrets = new List<Secret> {new Secret("ScopeSecret".Sha256())},
             UserClaims = new List<string> {"role"}
         }
