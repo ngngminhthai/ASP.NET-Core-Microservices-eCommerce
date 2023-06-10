@@ -2,6 +2,7 @@ using Contracts.Common.Interfaces;
 using Contracts.Messages;
 using Infrastructure.Common;
 using Infrastructure.Messages;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Product.Application.Features.ProductItems.Commands.UpdateProductItem;
 using Product.Domain.AggregateModels.ProductAggregate;
@@ -20,6 +21,13 @@ builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Updat
 builder.Services.AddScoped<IMessageProducer, RabbitMQProducer>();
 builder.Services.AddScoped<ISerializeService, SerializeService>();
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://localhost:5443";
+        options.Audience = "weatherapi";
+        options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+    });
 
 
 builder.Services.AddDbContext<ProductDbContext>(options =>
