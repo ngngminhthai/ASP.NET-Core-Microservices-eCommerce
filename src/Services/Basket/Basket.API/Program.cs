@@ -1,3 +1,8 @@
+using Basket.Application.MessageSubcribers;
+using Contracts.Common.Interfaces;
+using Contracts.Common.Messages;
+using Infrastructure.Common;
+using Infrastructure.Messages;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +13,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IMessageConsumer, RabbitMQConsumer>();
+builder.Services.AddScoped<ISerializeService, SerializeService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -38,6 +45,14 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//subcribe to other serivces
+// Instantiate the class
+var subscription = new ProductPriceChangedIntegrationEventSubcribe();
+
+// Call the method to subscribe to orders
+var subscriber = new ProductPriceChangedIntegrationEventSubcribe();
+subscriber.Subscribe();
 
 app.Run();
 

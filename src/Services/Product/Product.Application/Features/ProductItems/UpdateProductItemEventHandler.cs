@@ -1,5 +1,6 @@
 ﻿using Contracts.Messages;
 using MediatR;
+using Product.Application.IntegrationEvents;
 using Product.Domain.Events.ProductItemAggregate;
 
 namespace Product.Application.Features.ProductItems
@@ -17,7 +18,9 @@ namespace Product.Application.Features.ProductItems
         {
             Console.WriteLine("Handle Product Updated Event");
 
-            _messageProducer.SendMessage("Send to RabbitMQ");
+            var productPriceChangedIntegrationEvent = new ProductPriceChangedIntegrationEvent { Name = notification.Name, Price = notification.Price };
+
+            _messageProducer.PublishEvent<ProductPriceChangedIntegrationEvent>(productPriceChangedIntegrationEvent);
             return Task.CompletedTask;
         }
     }
