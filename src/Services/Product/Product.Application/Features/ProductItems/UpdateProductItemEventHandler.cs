@@ -20,7 +20,7 @@ namespace Product.Application.Features.ProductItems
 
             var productPriceChangedIntegrationEvent = new ProductPriceChangedIntegrationEvent { Name = notification.Name, Price = notification.Price };
 
-            _messageProducer.PublishEvent<ProductPriceChangedIntegrationEvent>(productPriceChangedIntegrationEvent);
+            _messageProducer.PublishEvent(productPriceChangedIntegrationEvent);
             return Task.CompletedTask;
         }
     }

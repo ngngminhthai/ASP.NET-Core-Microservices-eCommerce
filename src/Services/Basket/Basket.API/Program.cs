@@ -1,8 +1,6 @@
 using Basket.Application.MessageSubcribers;
 using Contracts.Common.Interfaces;
-using Contracts.Common.Messages;
 using Infrastructure.Common;
-using Infrastructure.Messages;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +11,6 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IMessageConsumer, RabbitMQConsumer>();
 builder.Services.AddScoped<ISerializeService, SerializeService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

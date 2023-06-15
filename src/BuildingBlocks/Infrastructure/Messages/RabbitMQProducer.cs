@@ -15,7 +15,7 @@ public class RabbitMQProducer : IMessageProducer
         _serializeService = serializeService;
     }
 
-    public void PublishEvent<T>(IntegrationEvent @event)
+    public void PublishEvent(IntegrationEvent @event)
     {
         var connectionFactory = new ConnectionFactory
         {
