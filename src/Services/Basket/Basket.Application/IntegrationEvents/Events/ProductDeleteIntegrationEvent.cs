@@ -2,8 +2,7 @@
 
 namespace Basket.Application.IntegrationEvents.Events
 {
-    public record ProductPriceChangedIntegrationEvent : IntegrationEvent
+    public record ProductDeleteIntegrationEvent : IntegrationEvent
     {
-
     }
 }
