@@ -1,5 +1,8 @@
+using Basket.Application.IntegrationEvents.EventHandling;
+using Basket.Application.IntegrationEvents.Events;
 using Basket.Application.MessageSubcribers;
 using Contracts.Common.Interfaces;
+using EventBus.Abstractions;
 using Infrastructure.Common;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -26,6 +29,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     options.Address = new Uri("http://localhost:5174"); // Replace with the actual gRPC server URL
 });*/
 
+
+
+builder.Services.AddTransient<IIntegrationEventHandler<ProductPriceChangedIntegrationEvent>, ProductPriceChangedIntegrationEventHandler>();
+
 var app = builder.Build();
 
 
@@ -45,11 +52,13 @@ app.MapControllers();
 
 //subcribe to other serivces
 // Instantiate the class
-var subscription = new ProductPriceChangedIntegrationEventSubcribe();
 
 // Call the method to subscribe to orders
-var subscriber = new ProductPriceChangedIntegrationEventSubcribe();
-subscriber.Subscribe();
+var productUpdate = new ProductPriceChangedIntegrationEventSubcribe();
+productUpdate.Subscribe();
+
+var productDelete = new ProductDeleteIntegrationEventSubscribe();
+productDelete.Subscribe();
 
 app.Run();
 

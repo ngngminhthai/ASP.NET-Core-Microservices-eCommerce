@@ -6,5 +6,5 @@ public interface IMessageProducer
 {
     void SendMessage<T>(T message);
 
-    void PublishEvent(IntegrationEvent @event);
+    void PublishEvent(IntegrationEvent @event, string queue);
 }

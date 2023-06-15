@@ -15,7 +15,7 @@ public class RabbitMQProducer : IMessageProducer
         _serializeService = serializeService;
     }
 
-    public void PublishEvent(IntegrationEvent @event)
+    public void PublishEvent(IntegrationEvent @event, string queue)
     {
         var connectionFactory = new ConnectionFactory
         {
@@ -25,12 +25,12 @@ public class RabbitMQProducer : IMessageProducer
         var connection = connectionFactory.CreateConnection();
         using var channel = connection.CreateModel();
 
-        channel.QueueDeclare("orders", exclusive: false);
+        channel.QueueDeclare(queue, exclusive: false);
 
         var jsonData = _serializeService.Serialize(@event);
         var body = Encoding.UTF8.GetBytes(jsonData);
 
-        channel.BasicPublish(exchange: "", routingKey: "orders", body: body);
+        channel.BasicPublish(exchange: "", routingKey: queue, body: body);
     }
 
     public void SendMessage<T>(T message)
