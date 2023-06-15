@@ -4,7 +4,10 @@ using Basket.Application.MessageSubcribers;
 using Contracts.Common.Interfaces;
 using EventBus.Abstractions;
 using Infrastructure.Common;
+using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Shared.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +35,31 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 
 builder.Services.AddTransient<IIntegrationEventHandler<ProductPriceChangedIntegrationEvent>, ProductPriceChangedIntegrationEventHandler>();
+
+
+// Extract settings
+var settings = builder.Configuration.GetSection("EventBusSettings").Get<EventBusSettings>();
+if (settings == null || string.IsNullOrEmpty(settings.HostAddress))
+    throw new ArgumentNullException("EventBusSettings is not configured!");
+
+var mqConnection = new Uri(settings.HostAddress);
+
+
+// Configure MassTransit
+builder.Services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+builder.Services.AddMassTransit(config =>
+{
+    config.AddConsumersFromNamespaceContaining<ProductPriceChangedIntegrationEventMassTransitHandler>();
+    config.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(mqConnection);
+        /* cfg.ReceiveEndpoint("product-price-changes2", c =>
+         {
+             c.ConfigureConsumer<ProductPriceChangedIntegrationEventMassTransitHandler>(ctx);
+         });*/
+        cfg.ConfigureEndpoints(ctx);
+    });
+});
 
 var app = builder.Build();
 

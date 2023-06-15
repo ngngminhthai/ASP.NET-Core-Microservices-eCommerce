@@ -1,5 +1,6 @@
 using Contracts.Common.Interfaces;
 using Contracts.Messages;
+using EventBus.IntegrationEvents;
 using Infrastructure.Common;
 using Infrastructure.Messages;
 using MassTransit;
@@ -7,7 +8,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Product.Application.Features.ProductItems.Commands.UpdateProductItem;
-using Product.Application.IntegrationEvents;
 using Product.Domain.AggregateModels.ProductAggregate;
 using Product.Infrastructure.Persistence;
 using Product.Infrastructure.Repositories;
@@ -57,8 +57,10 @@ builder.Services.AddMassTransit(config =>
         cfg.Host(mqConnection);
     });
     // Publish submit order message, instead of sending it to a specific queue directly.
-    config.AddRequestClient<ProductPriceChangedIntegrationEvent>();
+    config.AddRequestClient<ProductEvent>();
 });
+
+
 
 
 var app = builder.Build();
