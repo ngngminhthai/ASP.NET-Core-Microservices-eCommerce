@@ -1,3 +1,7 @@
+using Orchestrator.HttpRepositories.Interfaces;
+using Orchestrator.HttpRepository;
+using Orchestrator.HttpRepository.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +11,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddScoped<IOrderHttpRepository, OrderHttpRepository>();
+builder.Services.AddScoped<IBasketHttpRepository, BasketHttpRepository>();
+builder.Services.AddScoped<IInventoryHttpRepository, InventoryHttpRepository>();
+;
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

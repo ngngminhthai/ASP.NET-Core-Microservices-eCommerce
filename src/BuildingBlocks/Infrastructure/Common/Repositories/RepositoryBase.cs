@@ -120,5 +120,21 @@ namespace Infrastructure.Common.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task Add(T entity)
+        {
+            await _context.AddAsync(entity);
+        }
+
+        public async Task AddAsync(T entity)
+        {
+            await _context.AddAsync(entity);
+        }
+
+        public async Task<T> FindByIdAsync(K id)
+        {
+            var result = await _context.Set<T>().FindAsync(id).AsTask();
+            return result;
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Inventory.Grpc;
+﻿/*using Inventory.Grpc;
 
 namespace Basket.API.Grpc
 {
@@ -21,3 +21,4 @@ namespace Basket.API.Grpc
         }
     }
 }
+*/

@@ -16,4 +16,9 @@
     <ProjectReference Include="..\..\..\BuildingBlocks\EventBus\EventBus.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Carts\Commands\" />
+    <Folder Include="Features\Carts\Queries\" />
+  </ItemGroup>
+
 </Project>
