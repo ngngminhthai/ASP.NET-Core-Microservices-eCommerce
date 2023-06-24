@@ -1,3 +1,4 @@
+using Basket.API.GrpcServices;
 using Basket.Application.IntegrationEvents.EventHandling;
 using Basket.Application.IntegrationEvents.Events;
 using Basket.Application.MessageSubcribers;
@@ -8,6 +9,7 @@ using Contracts.Common.Interfaces;
 using EventBus.Abstractions;
 using EventBus.IntegrationEvents;
 using Infrastructure.Common;
+using Inventory.Grpc.Protos;
 using MassTransit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -40,12 +42,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
     });
 
-/*builder.Services.AddGrpcClient<Greeter.GreeterClient>(options =>
+builder.Services.AddGrpcClient<StockProtoService.StockProtoServiceClient>(options =>
 {
     options.Address = new Uri("http://localhost:5174"); // Replace with the actual gRPC server URL
-});*/
-
-
+});
+builder.Services.AddTransient<StockItemGrpcService>();
 
 builder.Services.AddTransient<IIntegrationEventHandler<ProductPriceChangedIntegrationEvent>, ProductPriceChangedIntegrationEventHandler>();
 

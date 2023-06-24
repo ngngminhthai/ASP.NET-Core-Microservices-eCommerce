@@ -27,10 +27,11 @@
     <ProjectReference Include="..\Basket.Infrastructure\Basket.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-	  <Protobuf Include="Protos\greet.proto" GrpcService="Client">
-		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </Protobuf>
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Protos\stockItem.proto" />
+		<Protobuf Include="Protos\stockItem.proto" GrpcServices="Client">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Protobuf>
+	</ItemGroup>
 
 </Project>

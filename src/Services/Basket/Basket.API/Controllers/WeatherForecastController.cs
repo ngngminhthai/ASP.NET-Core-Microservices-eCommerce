@@ -1,3 +1,4 @@
+using Basket.API.GrpcServices;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Basket.API.Controllers
@@ -12,19 +13,14 @@ namespace Basket.API.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        /*        private readonly GeeterGrpcService _geeterGrpcService;
-        */
-        /*  public WeatherForecastController(ILogger<WeatherForecastController> logger, GeeterGrpcService geeterGrpcService)
-          {
-              _logger = logger;
-              _geeterGrpcService = geeterGrpcService;
-          }*/
+        private readonly StockItemGrpcService stockItemGrpcService;
 
-        //if use dont run grpc service, then use this constructor
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, StockItemGrpcService stockItemGrpcService)
         {
             _logger = logger;
+            this.stockItemGrpcService = stockItemGrpcService;
         }
+
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
@@ -38,13 +34,12 @@ namespace Basket.API.Controllers
             .ToArray();
         }
 
-        /*   [HttpGet("Greeting")]
-           public async Task<IActionResult> GetGreeting()
-           {
-               string name = "John Doe";
-               string greeting = await _geeterGrpcService.GetGreetingAsync(name);
-               return Ok(greeting);
-           }*/
+        [HttpGet("Greeting")]
+        public async Task<IActionResult> GetGreeting()
+        {
+            await stockItemGrpcService.GetStock();
+            return Ok();
+        }
 
     }
 }
