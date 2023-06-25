@@ -4,7 +4,7 @@ namespace Orchestrator.HttpRepositories.Interfaces
 {
     public interface IBasketHttpRepository
     {
-        Task<CartDto> GetBasket(string username);
-        Task<bool> DeleteBasket(string username);
+        Task<CartDto> GetBasketAsync(long cartId);
+        Task<bool> DeleteBasketAsync(string username);
     }
 }

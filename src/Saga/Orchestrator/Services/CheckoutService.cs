@@ -18,8 +18,35 @@ public class CheckoutSagaService : ICheckoutSagaService
         _inventoryHttpRepository = inventoryHttpRepository;
     }
 
-    public Task<bool> CheckoutOrder(string username, CartDto basketCheckout)
+    public async Task<bool> CheckoutOrder(long cartId)
     {
-        return Task.FromResult(true);
+        try
+        {
+            var basket = await _basketHttpRepository.GetBasketAsync(cartId);
+
+            //_orderHttpRepository.CreateOrder(basket);
+
+            List<CartItemDto> CartItemDto = basket.Items.ToList();
+
+            foreach (var item in CartItemDto)
+            {
+                //_inventoryHttpRepository.UpdateStock(item);
+            }
+
+            return await Task.FromResult(true);
+        }
+        catch (Exception ex)
+        {
+            await Rollback();
+            return await Task.FromResult(true);
+
+        }
+
+
+    }
+
+    private async Task Rollback()
+    {
+
     }
 }

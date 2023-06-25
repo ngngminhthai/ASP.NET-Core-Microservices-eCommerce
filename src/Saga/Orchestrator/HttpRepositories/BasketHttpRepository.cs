@@ -5,20 +5,23 @@ namespace Orchestrator.HttpRepository;
 
 public class BasketHttpRepository : IBasketHttpRepository
 {
-    private readonly HttpClient _client;
+    private readonly HttpClient _httpClient;
 
-    public BasketHttpRepository(HttpClient client)
+    public BasketHttpRepository(HttpClient httpClient)
     {
-        _client = client;
+        _httpClient = httpClient;
     }
 
-    public Task<bool> DeleteBasket(string username)
+    public Task<bool> DeleteBasketAsync(string username)
     {
         throw new NotImplementedException();
     }
 
-    public Task<CartDto> GetBasket(string username)
+    public async Task<CartDto> GetBasketAsync(long cartId)
     {
-        throw new NotImplementedException();
+        var cart = await _httpClient.GetFromJsonAsync<CartDto>($"Carts/GetBasket/{cartId}");
+        if (cart == null || !cart.Items.Any()) return null;
+
+        return cart;
     }
 }

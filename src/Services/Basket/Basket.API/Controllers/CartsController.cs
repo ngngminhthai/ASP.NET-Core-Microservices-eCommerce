@@ -43,16 +43,25 @@ namespace Basket.API.Controllers
         }
 
         [HttpPost("Checkout")]
-        public async Task<IActionResult> Checkout(string username, int cartId)
+        public async Task<IActionResult> Checkout(long cartId)
         {
-            var basketCheckout = await _context.Carts.Include(c => c.BasketItems).Where(c => c.UserName == username).FirstOrDefaultAsync();
+            var basketCheckout = await _context.Carts.Include(c => c.BasketItems).Where(c => c.Id == cartId).FirstOrDefaultAsync();
             if (basketCheckout != null)
             {
                 await _publishEndpoint.Publish(new BasketCheckout { Id = basketCheckout.Id, DocumentId = "1324", TotalPrice = 5000, UserName = basketCheckout.UserName });
 
-                await _publishEndpoint.Publish(new BasketCheckout { Id = basketCheckout.Id, DocumentId = "1324", TotalPrice = 5000, UserName = basketCheckout.UserName });
-
                 return Ok();
+            }
+            return NotFound();
+        }
+
+        [HttpGet("GetBasket/{cartId}")]
+        public async Task<IActionResult> GetBasket(long cartId)
+        {
+            var basket = await _context.Carts.Include(c => c.BasketItems).Where(c => c.Id == cartId).FirstOrDefaultAsync();
+            if (basket != null)
+            {
+                return Ok(basket);
             }
             return NotFound();
         }
