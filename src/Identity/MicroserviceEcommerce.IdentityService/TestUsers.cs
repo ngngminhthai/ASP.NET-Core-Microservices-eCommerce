@@ -2,11 +2,11 @@
 // See LICENSE in the project root for license information.
 
 
+using Duende.IdentityServer;
+using Duende.IdentityServer.Test;
 using IdentityModel;
 using System.Security.Claims;
 using System.Text.Json;
-using Duende.IdentityServer;
-using Duende.IdentityServer.Test;
 
 
 public class TestUsers
@@ -22,7 +22,7 @@ public class TestUsers
                 postal_code = 69118,
                 country = "Germany"
             };
-                
+
             return new List<TestUser>
             {
                 new TestUser
@@ -54,7 +54,8 @@ public class TestUsers
                         new Claim(JwtClaimTypes.Email, "BobSmith@email.com"),
                         new Claim(JwtClaimTypes.EmailVerified, "true", ClaimValueTypes.Boolean),
                         new Claim(JwtClaimTypes.WebSite, "http://bob.com"),
-                        new Claim(JwtClaimTypes.Address, JsonSerializer.Serialize(address), IdentityServerConstants.ClaimValueTypes.Json)
+                        new Claim(JwtClaimTypes.Address, JsonSerializer.Serialize(address), IdentityServerConstants.ClaimValueTypes.Json),
+                        new Claim(JwtClaimTypes.Role, "Admin")
                     }
                 }
             };

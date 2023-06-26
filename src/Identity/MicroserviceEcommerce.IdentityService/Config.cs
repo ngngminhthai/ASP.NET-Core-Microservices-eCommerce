@@ -26,7 +26,7 @@ public static class Config
             UserClaims = new List<string> {"role"}
         }
     };
-    
+
     public static IEnumerable<Client> Clients =>
         new Client[]
         {
@@ -47,12 +47,27 @@ public static class Config
             {
                 ClientId = "interactive",
                 ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
-                    
+
                 AllowedGrantTypes = GrantTypes.Code,
 
                 RedirectUris = { "https://localhost:5444/signin-oidc" },
                 FrontChannelLogoutUri = "https://localhost:5444/signout-oidc",
                 PostLogoutRedirectUris = { "https://localhost:5444/signout-callback-oidc" },
+
+                AllowOfflineAccess = true,
+                AllowedScopes = { "openid", "profile", "weatherapi.read" },
+                RequireConsent = true
+            },
+             new Client
+            {
+                ClientId = "interactive2",
+                ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B5".Sha256()) },
+
+                AllowedGrantTypes = GrantTypes.Code,
+
+                RedirectUris = { "https://localhost:7221/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:7221/signout-oidc",
+                PostLogoutRedirectUris = { "https://localhost:7221/signout-callback-oidc" },
 
                 AllowOfflineAccess = true,
                 AllowedScopes = { "openid", "profile", "weatherapi.read" },
