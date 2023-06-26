@@ -26,7 +26,7 @@ public class CheckoutSagaService : ICheckoutSagaService
 
             //_orderHttpRepository.CreateOrder(basket);
 
-            List<CartItemDto> CartItemDto = basket.Items.ToList();
+            List<CartItemDto> CartItemDto = basket.BasketItems.ToList();
 
             foreach (var item in CartItemDto)
             {
@@ -38,7 +38,7 @@ public class CheckoutSagaService : ICheckoutSagaService
         catch (Exception ex)
         {
             await Rollback();
-            return await Task.FromResult(true);
+            return await Task.FromResult(false);
 
         }
 
@@ -47,6 +47,6 @@ public class CheckoutSagaService : ICheckoutSagaService
 
     private async Task Rollback()
     {
-
+        await Console.Out.WriteLineAsync("Roll Back Checkout Order");
     }
 }

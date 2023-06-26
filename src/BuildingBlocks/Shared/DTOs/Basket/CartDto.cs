@@ -5,7 +5,7 @@
         public long Id { get; set; }
         public string UserName { get; set; }
         public float TotalPrice { get; set; }
-        public List<CartItemDto> Items { get; set; } = new();
+        public List<CartItemDto> BasketItems { get; set; } = new();
 
     }
 }

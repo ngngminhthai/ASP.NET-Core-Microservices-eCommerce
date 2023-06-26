@@ -20,7 +20,7 @@ public class BasketHttpRepository : IBasketHttpRepository
     public async Task<CartDto> GetBasketAsync(long cartId)
     {
         var cart = await _httpClient.GetFromJsonAsync<CartDto>($"Carts/GetBasket/{cartId}");
-        if (cart == null || !cart.Items.Any()) return null;
+        if (cart == null || !cart.BasketItems.Any()) return null;
 
         return cart;
     }
