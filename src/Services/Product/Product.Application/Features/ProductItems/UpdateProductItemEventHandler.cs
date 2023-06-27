@@ -26,8 +26,8 @@ namespace Product.Application.Features.ProductItems
             var productPriceChangedIntegrationEvent = new ProductPriceChangedIntegrationEvent { Name = notification.Name, Price = notification.Price };
 
             _messageProducer.PublishEvent(productPriceChangedIntegrationEvent, "product-price-changes");
-            _publishEndpoint.Publish(productPriceChangedIntegrationEvent);
-            _publishEndpoint.Publish(new ProductEvent { Id = 1 });
+            _publishEndpoint.Publish(new ProductEvent { Name = notification.Name, Price = notification.Price });
+
             return Task.CompletedTask;
         }
     }

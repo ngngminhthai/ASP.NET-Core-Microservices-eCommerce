@@ -1,5 +1,6 @@
 ﻿using IdentityModel.Client;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Diagnostics;
@@ -21,6 +22,7 @@ public class HomeController : Controller
         _logger = logger;
     }
 
+    [Authorize]
     public async Task<IActionResult> Index()
     {
         var claims = User.Claims;

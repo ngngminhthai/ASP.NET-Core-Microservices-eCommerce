@@ -11,6 +11,9 @@ public class CheckoutSagaService : ICheckoutSagaService
     private readonly IBasketHttpRepository _basketHttpRepository;
     private readonly IInventoryHttpRepository _inventoryHttpRepository;
 
+    private CartDto _basket;
+    private long _orderId;
+
     public CheckoutSagaService(IOrderHttpRepository orderHttpRepository, IBasketHttpRepository basketHttpRepository, IInventoryHttpRepository inventoryHttpRepository)
     {
         _orderHttpRepository = orderHttpRepository;
@@ -22,31 +25,48 @@ public class CheckoutSagaService : ICheckoutSagaService
     {
         try
         {
-            var basket = await _basketHttpRepository.GetBasketAsync(cartId);
+            _basket = await _basketHttpRepository.GetBasketAsync(cartId);
 
-            //_orderHttpRepository.CreateOrder(basket);
+            //_orderId = await _orderHttpRepository.CreateOrder(_basket);
 
-            List<CartItemDto> CartItemDto = basket.BasketItems.ToList();
-
-            foreach (var item in CartItemDto)
+            foreach (var item in _basket.BasketItems)
             {
-                //_inventoryHttpRepository.UpdateStock(item);
+                //await _inventoryHttpRepository.UpdateStock(item);
             }
 
-            return await Task.FromResult(true);
+            return true;
         }
         catch (Exception ex)
         {
             await Rollback();
-            return await Task.FromResult(false);
-
+            return false;
         }
-
-
     }
 
     private async Task Rollback()
     {
-        await Console.Out.WriteLineAsync("Roll Back Checkout Order");
+        try
+        {
+            if (_orderId != default)
+            {
+                //await _orderHttpRepository.DeleteOrder(_orderId);
+                _orderId = default;
+            }
+
+            if (_basket != null)
+            {
+                foreach (var item in _basket.BasketItems)
+                {
+                    //await _inventoryHttpRepository.RollbackStockUpdate(item);
+                }
+                _basket = null;
+            }
+
+            await Console.Out.WriteLineAsync("Roll Back Checkout Order");
+        }
+        catch (Exception ex)
+        {
+            await Console.Out.WriteLineAsync($"Error during Rollback: {ex.Message}");
+        }
     }
 }

@@ -21,6 +21,11 @@ namespace Contracts.Domains.Interfaces
         Task Add(T entity);
         Task AddAsync(T entity);
         Task Save();
+        T FindById(K id, params Expression<Func<T, object>>[] includeProperties);
+        T FindSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        IQueryable<T> FindAll(params Expression<Func<T, object>>[] includeProperties);
+        IQueryable<T> FindAll(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);
+        void Update(T entity, params string[] propertiesToExclude);
     }
     public interface IRepositoryBase<T, K, TContext> : IRepositoryBase<T, K>
     where T : EntityBase<K>
