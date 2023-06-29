@@ -4,11 +4,11 @@
       "UpstreamPathTemplate": "/ocelot/WeatherForecast",
       "UpstreamHttpMethod": [ "Get" ],
       "DownstreamPathTemplate": "/WeatherForecast",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5002
+          "Port": 5445
         }
       ],
       "SwaggerKey": "wheather-service"
