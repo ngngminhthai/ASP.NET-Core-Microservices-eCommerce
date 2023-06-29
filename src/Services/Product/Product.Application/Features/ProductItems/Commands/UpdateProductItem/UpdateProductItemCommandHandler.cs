@@ -9,6 +9,7 @@ namespace Product.Application.Features.ProductItems.Commands.UpdateProductItem
         private readonly IProductItemRepository _productItemRepository;
         private readonly IMediator _mediator;
 
+
         public UpdateProductItemCommandHandler(IProductItemRepository productItemRepository, IMediator mediator)
         {
             _productItemRepository = productItemRepository;

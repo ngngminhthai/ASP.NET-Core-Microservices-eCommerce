@@ -55,9 +55,11 @@ builder.Services.AddMassTransit(config =>
     config.UsingRabbitMq((ctx, cfg) =>
     {
         cfg.Host(mqConnection);
+
     });
     // Publish submit order message, instead of sending it to a specific queue directly.
     config.AddRequestClient<ProductEvent>();
+
 });
 
 
